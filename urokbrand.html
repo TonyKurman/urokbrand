@@ -93,7 +93,7 @@
 
 <!-- ═══════════════ NAVBAR ═══════════════ -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-gold/10"
-  style="background:rgba(13,13,13,0.85);backdrop-filter:blur(14px);">
+  style="background:rgba(13,13,13,0);backdrop-filter:none;">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 md:h-20">
 
@@ -158,9 +158,9 @@
 
 <!-- ═══════════════ HERO ═══════════════ -->
 <section id="home" class="relative min-h-screen flex items-end pb-20 md:pb-36 overflow-hidden">
-  <div class="absolute inset-0 bg-coal">
-    <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-60" style="pointer-events:none;">
-      <source src="hero.mov" type="video/mp4">
+  <div class="absolute inset-0" style="background:#0a0a1a url('KL8A6547-2_cosmic.jpg') center/cover no-repeat;"><div class="absolute inset-0 bg-coal/40" style="z-index:1;pointer-events:none;"></div>
+    <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="KL8A6547-2_cosmic.jpg" class="w-full h-full object-cover" style="pointer-events:none;">
+      <source src="hero.mp4" type="video/mp4">
     </video>
     <div class="absolute inset-0" style="background:radial-gradient(ellipse 60% 50% at 70% 40%,rgba(201,169,110,0.08) 0%,transparent 60%);"></div>
   </div>
@@ -217,8 +217,8 @@
 
 <!-- ═══════════════ PHILOSOPHY ═══════════════ -->
 <section id="about" class="py-24 md:py-36 relative overflow-hidden">
-  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-15" style="pointer-events:none;">
-    <source src="video2.mov" type="video/mp4">
+  <video id="hero-about-video" autoplay muted loop playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover opacity-15" style="pointer-events:none;">
+    <source src="video2.mp4" type="video/mp4">
   </video>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="grid md:grid-cols-2 gap-16 items-center">
@@ -268,6 +268,19 @@
     </div>
 
     <div id="prod-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    <div class="mt-20 reveal">
+      <div class="max-w-3xl mx-auto text-center border-t border-cream/10 pt-16">
+        <div class="w-10 h-px bg-gold mx-auto mb-8"></div>
+        <p class="text-2xl md:text-3xl text-cream/80 font-light leading-relaxed mb-5">
+          <span class="gold-grad font-semibold">You Are Ok</span> — это бренд очков для тех, кто хочет чувствовать себя уверенно в любой ситуации.
+        </p>
+        <p class="text-cream/45 text-lg leading-relaxed">
+          Когда вы надеваете наши очки, вы автоматически становитесь «в порядке» — потому что они не просто защищают ваши глаза. Они защищают вашу уверенность.
+        </p>
+        <div class="w-10 h-px bg-gold mx-auto mt-8"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -425,6 +438,7 @@
       <div>
         <h4 class="text-cream font-medium mb-5 text-sm">Контакты</h4>
         <div class="flex flex-col gap-4">
+          <!-- Telegram -->
           <a href="https://t.me/urokbrand" target="_blank" class="flex items-center gap-3 text-cream/38 hover:text-gold transition-colors group">
             <div class="w-8 h-8 rounded-full bg-charcoal group-hover:bg-gold/10 flex items-center justify-center transition-colors shrink-0">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
@@ -432,6 +446,36 @@
             <div>
               <div class="text-sm">@urokbrand</div>
               <div class="text-[11px] text-cream/20">Telegram-канал</div>
+            </div>
+          </a>
+          <!-- Instagram -->
+          <a href="https://instagram.com/urok_brand" target="_blank" class="flex items-center gap-3 text-cream/38 hover:text-gold transition-colors group">
+            <div class="w-8 h-8 rounded-full bg-charcoal group-hover:bg-gold/10 flex items-center justify-center transition-colors shrink-0">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </div>
+            <div>
+              <div class="text-sm">@urok_brand</div>
+              <div class="text-[11px] text-cream/20">Instagram</div>
+            </div>
+          </a>
+          <!-- Phone -->
+          <a href="tel:+79690480901" class="flex items-center gap-3 text-cream/38 hover:text-gold transition-colors group">
+            <div class="w-8 h-8 rounded-full bg-charcoal group-hover:bg-gold/10 flex items-center justify-center transition-colors shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.338c0-.966.784-1.75 1.75-1.75h2.5a1.75 1.75 0 011.663 1.2l.812 2.846a1.75 1.75 0 01-.418 1.778l-.956.956a14.065 14.065 0 006.697 6.697l.956-.956a1.75 1.75 0 011.778-.418l2.846.812A1.75 1.75 0 0121.75 19v2.5A1.75 1.75 0 0120 23.25C10.477 23.25.75 13.523.75 4A1.75 1.75 0 012.5 2.25h2.5"/></svg>
+            </div>
+            <div>
+              <div class="text-sm">+7 969 048 09 01</div>
+              <div class="text-[11px] text-cream/20">Телефон</div>
+            </div>
+          </a>
+          <!-- Email -->
+          <a href="mailto:tonykurman@gmail.com" class="flex items-center gap-3 text-cream/38 hover:text-gold transition-colors group">
+            <div class="w-8 h-8 rounded-full bg-charcoal group-hover:bg-gold/10 flex items-center justify-center transition-colors shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            </div>
+            <div>
+              <div class="text-sm">tonykurman@gmail.com</div>
+              <div class="text-[11px] text-cream/20">Email</div>
             </div>
           </a>
           <a href="https://t.me/urokbrand" target="_blank"
@@ -510,9 +554,12 @@ const TG = 'urokbrand';
 const products = [
   { id:1, name:'Shield Classic', price:99, cat:'sun',     short:'Классическая квадратная форма с тёмными линзами. Твой ежедневный щит.',   desc:'Квадратная форма с едва закруглёнными углами — универсальная классика, которая подходит почти любому типу лица. Матово-чёрный ацетат итальянского производства, лёгкие дужки с пружинным шарниром.', mat:'Итальянский ацетат', size:'Универсальный S–M', prot:'UV400',   colors:['Матовый чёрный','Глубокий серый'], badge:'Хит',    bg:'#0a0a2e', img:'IMG_0739_cosmic.jpg', img2:'IMG_2474_cosmic.jpg' },
   { id:2, name:'Ok Oval',        price:99, cat:'optical',  short:'Мягкие овальные линзы для тех, кто ценит деликатность форм.',             desc:'Тонкая металлическая оправа с овальными линзами. Золотистые петли, мягкий силиконовый носоупор. Деликатный вид, который не перегружает образ.',                                              mat:'Металл + ацетат',  size:'M / L',          prot:'Оптические', colors:['Матовое золото','Серебро'],        badge:null,    bg:'#0a0a2e', img:'IMG_2474_cosmic.jpg', img2:'IMG_2477_cosmic.jpg' },
-  { id:3, name:'Calm Cat',       price:99, cat:'sun',      short:'Кошачий глаз с едва заметным изгибом. Для уверенных и спокойных.',          desc:'Форма «кошачий глаз» с минимальным, почти незаметным изгибом — сдержанная элегантность без лишнего вычурности. Ацетат премиального класса, тонкие дужки.',                               mat:'Ацетат премиум',   size:'S / M',          prot:'UV400',      colors:['Тортуаз','Чёрный'],               badge:'Новинка', bg:'#0a0a2e', img:'IMG_2477_cosmic.jpg', img2:'IMG_2617_cosmic.jpg' },
+  { id:3, name:'Calm Cat',       price:99, cat:'sun',      short:'Кошачий глаз с едва заметным изгибом. Для уверенных и спокойных.',          desc:'Форма «кошачий глаз» с минимальным, почти незаметным изгибом — сдержанная элегантность без лишнего вычурности. Ацетат премиального класса, тонкие дужки.',                               mat:'Ацетат премиум',   size:'S / M',          prot:'UV400',      colors:['Тортуаз','Чёрный'],               badge:'Новинка', bg:'#0a0a2e', img:'KL8A6452_cosmic.jpg', img2:'KL8A6547-2_cosmic.jpg' },
   { id:4, name:'Deep Round',     price:99, cat:'optical',  short:'Круглые оправы с тонкими металлическими дужками.',                         desc:'Тонкая титановая оправа с круглыми линзами — интеллектуальный минимализм. Невесомая конструкция, пружинные петли, удобная посадка для продолжительного ношения.',                         mat:'Титан',            size:'S',              prot:'Оптические', colors:['Матовое золото','Чёрный хром'],   badge:null,    bg:'#0a0a2e', img:'IMG_2617_cosmic.jpg', img2:'IMG_2738_cosmic.jpg' },
   { id:5, name:'Shield II',      price:99, cat:'special',  short:'Лимитированный Shield с особым антибликовым покрытием.',                   desc:'Лимитированная версия флагманской модели Shield Classic. Ацетат Mazzucchelli, антибликовое AR-покрытие, поляризованные линзы. Только 50 экземпляров.',                                       mat:'Ацетат Mazzucchelli',size:'Универсальный', prot:'UV400 + AR',  colors:['Smoke Black'],                    badge:'Лимит',  bg:'#0a0a2e', img:'IMG_2738_cosmic.jpg', img2:'IMG_2747_cosmic.jpg' },
+  { id:7, name:'Summer Wave',    price:99, cat:'sun',     short:'Белая текстурная оправа — хит пляжного сезона.',                           desc:'Уникальная рельефная оправа ручной работы — лёгкая, яркая, запоминающаяся. Тёмные линзы с UV400-защитой. Идеальна для пляжа, бассейна и летних вечеров. Только у нас.',                    mat:'Ацетат текстурный', size:'Универсальный', prot:'UV400',      colors:['Белый'],                          badge:'Новинка', bg:'#0a0a2e', img:'KL8A6452_cosmic.jpg', img2:'KL8A6547-2_cosmic.jpg' },
+  { id:8, name:'Cosmic Reef',    price:99, cat:'sun',     short:'Объёмная оправа с морской текстурой — для тех, кто не боится выделяться.', desc:'Рельефная оправа, вдохновлённая природными формами океана. Лёгкая и прочная, с поляризованными тёмными линзами. Каждая пара уникальна по текстуре.',                                             mat:'Ацетат рельефный', size:'Универсальный', prot:'UV400',      colors:['Белый перламутр'],                badge:null,    bg:'#0a0a2e', img:'KL8A6428_cosmic.jpg', img2:'KL8A6435_cosmic.jpg' },
+  { id:9, name:'Sky Drift',       price:99, cat:'sun',     short:'Лёгкая форма для тех, кто смотрит сквозь ветер.',                               desc:'Широкие линзы и изящная белая оправа — идеальный баланс стиля и защиты. Для активных дней под открытым небом. UV400, пружинные петли, лёгкий ацетат.',                                  mat:'Ацетат лёгкий',   size:'S / M',          prot:'UV400',      colors:['Белый'],                          badge:null,    bg:'#0a0a2e', img:'KL8A6441_cosmic.jpg', img2:'KL8A6449_cosmic.jpg' },
   { id:6, name:'Ok Minimal',     price:99, cat:'optical',  short:'Полуободковые очки для тех, кто выбирает меньше.',                         desc:'Полуободковая оправа из нержавеющей стали — максимально лёгкий и незаметный вариант для повседневного ношения. Нижняя часть линзы без ободка, тонкие дужки.',                             mat:'Нержавеющая сталь', size:'M',             prot:'Оптические', colors:['Серебро','Чёрный'],               badge:null,    bg:'#0a0a2e', img:'IMG_2747_cosmic.jpg', img2:'IMG_0739_cosmic.jpg' },
 ];
 
@@ -760,6 +807,15 @@ document.addEventListener('keydown',e=>{
 
 // ── Auto-slide ──
 setInterval(nextSlide,5000);
+
+// ── Mobile video fix ──
+document.addEventListener('DOMContentLoaded',()=>{
+  const v = document.getElementById('hero-video');
+  if(v){
+    v.play().catch(()=>{});
+    document.addEventListener('touchstart',()=>v.play().catch(()=>{}),{once:true});
+  }
+});
 
 // ── Init ──
 document.addEventListener('DOMContentLoaded',()=>{

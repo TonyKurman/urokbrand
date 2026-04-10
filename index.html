@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urokbrand — U Are Ok | Очки уверенности</title>
+  <meta name="description" content="Urokbrand — твой персональный щит уверенности. Минималистичные очки с философией U Are Ok.">
+  <meta name="keywords" content="очки, солнцезащитные очки, urokbrand, u are ok, оптика, стильные очки">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            charcoal: '#1a1a1a',
+            coal: '#0d0d0d',
+            smoke: '#232323',
+            cream: '#f5f0e8',
+            beige: '#e8dcc8',
+            gold: '#c9a96e',
+            'gold-light': '#d4b882',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',system-ui,sans-serif;}
+    ::-webkit-scrollbar{width:4px;}
+    ::-webkit-scrollbar-track{background:#0d0d0d;}
+    ::-webkit-scrollbar-thumb{background:#c9a96e;border-radius:2px;}
+
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    .anim-1{animation:fadeInUp 0.9s ease forwards;}
+    .anim-2{animation:fadeInUp 0.9s 0.18s ease both;}
+    .anim-3{animation:fadeInUp 0.9s 0.34s ease both;}
+    .anim-4{animation:fadeInUp 0.9s 0.5s ease both;}
+    .anim-fade{animation:fadeIn 1.2s ease both;}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s ease,transform 0.75s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .d1{transition-delay:0.05s;}.d2{transition-delay:0.15s;}.d3{transition-delay:0.25s;}.d4{transition-delay:0.35s;}
+
+    .hero-bg{background:linear-gradient(135deg,#080808 0%,#141414 40%,#0a0a14 100%);}
+    .hero-overlay{background:linear-gradient(to bottom,rgba(13,13,13,0.2) 0%,rgba(13,13,13,0.45) 55%,rgba(13,13,13,0.92) 100%);}
+    .gold-grad{background:linear-gradient(135deg,#c9a96e,#d4b882,#b8934a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .grid-bg{background-image:linear-gradient(rgba(201,169,110,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.06) 1px,transparent 1px);background-size:60px 60px;}
+    .glow-gold{box-shadow:0 0 40px rgba(201,169,110,0.15);}
+
+    .nav-link{position:relative;}
+    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:#c9a96e;transition:width 0.3s ease;}
+    .nav-link:hover::after{width:100%;}
+
+    .product-card{transition:transform 0.3s ease,box-shadow 0.3s ease;}
+    .product-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+
+    /* ABF-style product imagery */
+    .prod-img-wrap{position:relative;overflow:hidden;}
+    .prod-img{width:100%;height:100%;object-fit:cover;filter:saturate(0.65) brightness(1.1) contrast(0.92);transition:opacity 0.5s ease,transform 0.6s ease;}
+    .prod-img-2{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:saturate(0.75) brightness(1.05) contrast(0.95);transition:opacity 0.5s ease;}
+    .product-card:hover .prod-img{opacity:0;transform:scale(1.07);}
+    .product-card:hover .prod-img-2{opacity:1;}
+
+    /* Modal image swap */
+    .modal-img-wrap{position:relative;overflow:hidden;}
+    .modal-img{width:100%;height:100%;object-fit:cover;filter:saturate(0.7) brightness(1.08) contrast(0.92);transition:opacity 0.5s ease;}
+    .modal-img-2{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:saturate(0.8) brightness(1.04);transition:opacity 0.5s ease;}
+    .modal-img-wrap:hover .modal-img{opacity:0;}
+    .modal-img-wrap:hover .modal-img-2{opacity:1;}
+
+    .cart-sidebar{transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);}
+    .cart-sidebar.open{transform:translateX(0);}
+    .cart-sidebar.closed{transform:translateX(100%);}
+
+    .carousel-track{transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);}
+
+    .ph1{background:linear-gradient(135deg,#161616,#252525,#161616);}
+    .ph2{background:linear-gradient(135deg,#1a1a26,#272730,#14141e);}
+    .ph3{background:linear-gradient(135deg,#1e1a14,#2a2418,#1a1610);}
+
+    .mobile-menu{transition:opacity 0.25s ease,transform 0.25s ease;}
+    .mm-hidden{opacity:0;pointer-events:none;transform:translateY(-8px);}
+    .mm-show{opacity:1;pointer-events:all;transform:translateY(0);}
+
+    .line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  </style>
+</head>
+<body class="bg-coal text-cream">
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-gold/10"
+  style="background:rgba(13,13,13,0);backdrop-filter:none;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full border border-gold flex items-center justify-center shrink-0">
+          <span class="text-gold text-xs font-bold">U</span>
+        </div>
+        <span class="text-cream font-semibold tracking-widest text-sm uppercase">Urokbrand</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#home"    class="nav-link text-sm text-cream/60 hover:text-cream transition-colors">Главная</a>
+        <a href="#catalog" class="nav-link text-sm text-cream/60 hover:text-cream transition-colors">Каталог</a>
+        <a href="#about"   class="nav-link text-sm text-cream/60 hover:text-cream transition-colors">О бренде</a>
+        <a href="#journal" class="nav-link text-sm text-cream/60 hover:text-cream transition-colors">Журнал</a>
+        <a href="#contacts" class="nav-link text-sm text-cream/60 hover:text-cream transition-colors">Контакты</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Cart -->
+        <button onclick="toggleCart()" class="relative p-2 text-cream/60 hover:text-gold transition-colors">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          <span id="cart-badge" class="hidden absolute -top-0.5 -right-0.5 w-4 h-4 bg-gold text-coal text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+        </button>
+        <!-- Telegram -->
+        <a href="https://t.me/urokbrand" target="_blank"
+          class="hidden md:flex items-center gap-2 bg-gold hover:bg-gold-light text-coal text-xs font-semibold px-5 py-2.5 rounded-full transition-all hover:shadow-lg hover:shadow-gold/25">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Магазин в Telegram
+        </a>
+        <!-- Burger -->
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-cream/60 hover:text-cream">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="mobile-menu mm-hidden md:hidden border-t border-cream/10"
+    style="background:rgba(10,10,10,0.97);">
+    <div class="px-6 py-5 flex flex-col gap-4">
+      <a href="#home"    onclick="closeMM()" class="text-cream/60 hover:text-cream py-1 transition-colors">Главная</a>
+      <a href="#catalog" onclick="closeMM()" class="text-cream/60 hover:text-cream py-1 transition-colors">Каталог</a>
+      <a href="#about"   onclick="closeMM()" class="text-cream/60 hover:text-cream py-1 transition-colors">О бренде</a>
+      <a href="#journal" onclick="closeMM()" class="text-cream/60 hover:text-cream py-1 transition-colors">Журнал</a>
+      <a href="#contacts" onclick="closeMM()" class="text-cream/60 hover:text-cream py-1 transition-colors">Контакты</a>
+      <a href="https://t.me/urokbrand" target="_blank"
+        class="mt-2 flex items-center justify-center gap-2 bg-gold text-coal font-semibold py-3.5 rounded-full">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Открыть магазин
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="home" class="relative min-h-screen flex items-end pb-20 md:pb-36 overflow-hidden">
+  <div class="absolute inset-0" style="background:#0a0a1a url('KL8A6547-2_cosmic.jpg') center/cover no-repeat;"><div class="absolute inset-0 bg-coal/40" style="z-index:1;pointer-events:none;"></div>
+    <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="KL8A6547-2_cosmic.jpg" class="w-full h-full object-cover" style="pointer-events:none;">
+      <source src="hero.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 60% 50% at 70% 40%,rgba(201,169,110,0.08) 0%,transparent 60%);"></div>
+  </div>
+  <div class="hero-overlay absolute inset-0"></div>
+
+  <!-- BIG BG text -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+    <span class="text-[22vw] font-black tracking-widest select-none" style="color:rgba(245,240,232,0.025);">OK</span>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="max-w-2xl">
+      <div class="inline-flex items-center gap-2 border border-gold/25 rounded-full px-4 py-1.5 mb-8 anim-fade">
+        <span class="w-1.5 h-1.5 bg-gold rounded-full animate-pulse"></span>
+        <span class="text-gold/75 text-xs tracking-widest uppercase">Коллекция 2025</span>
+      </div>
+
+      <h1 class="text-[clamp(3.5rem,11vw,7rem)] font-bold leading-none mb-5 anim-1 gold-grad">U Are Ok</h1>
+      <p class="text-xl md:text-2xl text-cream/55 font-light mb-2 anim-2">Твой персональный щит уверенности и комфорта</p>
+      <p class="text-sm text-cream/35 mb-12 tracking-widest anim-3">UROKBRAND — очки как философия жизни</p>
+
+      <div class="flex flex-col sm:flex-row gap-4 anim-4">
+        <a href="#catalog"
+          class="flex items-center justify-center gap-2 bg-cream text-coal font-semibold px-8 py-4 rounded-full hover:bg-beige transition-all hover:shadow-lg hover:shadow-cream/10">
+          Смотреть каталог
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+        <a href="https://t.me/urokbrand" target="_blank"
+          class="flex items-center justify-center gap-2 border border-gold/45 text-gold font-semibold px-8 py-4 rounded-full hover:bg-gold/10 transition-all">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Купить в Telegram
+        </a>
+      </div>
+    </div>
+    <!-- Scroll hint -->
+    <div class="absolute bottom-0 right-6 md:right-10 flex flex-col items-center gap-2 anim-fade pb-6">
+      <span class="text-cream/25 text-[10px] tracking-[0.3em] uppercase" style="writing-mode:vertical-rl;">scroll</span>
+      <div class="w-px h-10 bg-gradient-to-b from-cream/25 to-transparent"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ STATS ═══════════════ -->
+<div class="border-y border-cream/10" style="background:linear-gradient(to bottom, #ffffff 33.3%, #0039A6 33.3%, #0039A6 66.6%, #D52B1E 66.6%)">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-cream/10">
+      <div class="py-6 px-6 text-center reveal"><div class="text-2xl font-bold mb-0.5" style="color:#0039A6">500+</div><div class="text-[11px] tracking-widest uppercase font-semibold" style="color:#D52B1E">Клиентов</div></div>
+      <div class="py-6 px-6 text-center reveal d1"><div class="text-2xl font-bold mb-0.5" style="color:#0039A6">12</div><div class="text-[11px] tracking-widest uppercase font-semibold" style="color:#D52B1E">Моделей</div></div>
+      <div class="py-6 px-6 text-center reveal d2"><div class="text-2xl font-bold mb-0.5" style="color:#0039A6">2 года</div><div class="text-[11px] tracking-widest uppercase font-semibold" style="color:#D52B1E">На рынке</div></div>
+      <div class="py-6 px-6 text-center reveal d3"><div class="text-2xl font-bold mb-0.5" style="color:#0039A6">★ 4.9</div><div class="text-[11px] tracking-widest uppercase font-semibold" style="color:#D52B1E">Рейтинг</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PHILOSOPHY ═══════════════ -->
+<section id="about" class="py-24 md:py-36 relative overflow-hidden">
+  <video id="hero-about-video" autoplay muted loop playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover opacity-15" style="pointer-events:none;">
+    <source src="video2.mp4" type="video/mp4">
+  </video>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <span class="text-gold/55 text-[11px] tracking-widest uppercase mb-4 block">Философия</span>
+        <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-6">Больше, чем<br/><span class="gold-grad">просто очки</span></h2>
+        <p class="text-cream/60 text-lg leading-relaxed mb-5">«U Are Ok» — это не просто аксессуар. Это твой персональный щит уверенности. Когда надеваешь эти очки — ты автоматически становишься «в порядке», независимо от того, как чувствуешь себя внутри.</p>
+        <p class="text-cream/38 leading-relaxed mb-8">Мы создаём очки для людей, которые ценят тишину, глубину и подлинность. Каждая модель — баланс между минималистичной формой и максимальным смыслом. Тихая сила и настоящая забота.</p>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-px bg-gold"></div>
+          <span class="text-gold/70 text-sm italic">«Тихая сила. Настоящая забота.»</span>
+        </div>
+      </div>
+
+      <div class="reveal d2">
+        <div class="relative">
+          <div class="aspect-[3/4] rounded-2xl overflow-hidden relative bg-smoke">
+            <img src="IMG_2617_cosmic.jpg" alt="Urokbrand" class="w-full h-full object-cover">
+            <div class="absolute inset-0" style="background:linear-gradient(to bottom, transparent 60%, rgba(13,13,13,0.4) 100%);"></div>
+          </div>
+          <div class="absolute -bottom-5 -left-5 bg-charcoal border border-cream/10 rounded-xl px-5 py-4 shadow-2xl">
+            <div class="text-gold font-bold text-lg">U Are Ok</div>
+            <div class="text-cream/35 text-xs mt-0.5">Философия бренда</div>
+          </div>
+          <div class="absolute -top-4 -right-4 w-20 h-20 border-t-2 border-r-2 border-gold/25 rounded-tr-2xl"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CATALOG ═══════════════ -->
+<section id="catalog" class="py-24 bg-charcoal">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <span class="text-gold/55 text-[11px] tracking-widest uppercase mb-4 block">Коллекция</span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Каталог</h2>
+      <p class="text-cream/45 max-w-md mx-auto text-sm">Каждая модель создана с намерением — дать тебе ощущение спокойной уверенности в любой момент</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="flex items-center justify-center flex-wrap gap-3 mb-12 reveal">
+      <button onclick="filterProd('all')"     data-f="all"     class="fpb active px-5 py-2 rounded-full text-sm transition-all bg-gold text-coal font-semibold">Все</button>
+      <button onclick="filterProd('sun')"     data-f="sun"     class="fpb px-5 py-2 rounded-full text-sm transition-all border border-cream/15 text-cream/50 hover:text-cream hover:border-cream/30">Солнцезащитные</button>
+      <button onclick="filterProd('optical')" data-f="optical" class="fpb px-5 py-2 rounded-full text-sm transition-all border border-cream/15 text-cream/50 hover:text-cream hover:border-cream/30">Оптические</button>
+      <button onclick="filterProd('special')" data-f="special" class="fpb px-5 py-2 rounded-full text-sm transition-all border border-cream/15 text-cream/50 hover:text-cream hover:border-cream/30">Лимитированные</button>
+    </div>
+
+    <div id="prod-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    <div class="mt-20 reveal">
+      <div class="max-w-3xl mx-auto text-center border-t border-cream/10 pt-16">
+        <div class="w-10 h-px bg-gold mx-auto mb-8"></div>
+        <p class="text-2xl md:text-3xl text-cream/80 font-light leading-relaxed mb-5">
+          <span class="gold-grad font-semibold">You Are Ok</span> — это бренд очков для тех, кто хочет чувствовать себя уверенно в любой ситуации.
+        </p>
+        <p class="text-cream/45 text-lg leading-relaxed">
+          Когда вы надеваете наши очки, вы автоматически становитесь «в порядке» — потому что они не просто защищают ваши глаза. Они защищают вашу уверенность.
+        </p>
+        <div class="w-10 h-px bg-gold mx-auto mt-8"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ BENEFITS ═══════════════ -->
+<section class="py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 reveal">
+      <span class="text-gold/55 text-[11px] tracking-widest uppercase mb-4 block">Преимущества</span>
+      <h2 class="text-4xl md:text-5xl font-bold">Почему выбирают<br/>Urokbrand</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Benefit cards -->
+      <div class="reveal benefit-card bg-charcoal rounded-2xl p-7 border border-cream/5 hover:border-gold/20 transition-all duration-300 group">
+        <div class="w-11 h-11 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/18 transition-colors">
+          <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+        </div>
+        <h3 class="font-semibold mb-2">Осмысленный дизайн</h3>
+        <p class="text-cream/45 text-sm leading-relaxed">Каждая деталь продумана. Никаких лишних элементов — только то, что делает тебя собой.</p>
+      </div>
+      <div class="reveal d1 benefit-card bg-charcoal rounded-2xl p-7 border border-cream/5 hover:border-gold/20 transition-all duration-300 group">
+        <div class="w-11 h-11 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/18 transition-colors">
+          <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h3 class="font-semibold mb-2">Качественные материалы</h3>
+        <p class="text-cream/45 text-sm leading-relaxed">Итальянский ацетат, пружинные петли, линзы с UV400-защитой. Сделано надолго.</p>
+      </div>
+      <div class="reveal d2 benefit-card bg-charcoal rounded-2xl p-7 border border-cream/5 hover:border-gold/20 transition-all duration-300 group">
+        <div class="w-11 h-11 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/18 transition-colors">
+          <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </div>
+        <h3 class="font-semibold mb-2">Для всех типов лица</h3>
+        <p class="text-cream/45 text-sm leading-relaxed">Наши модели разработаны для разных форм лица. Помогаем подобрать идеальный вариант.</p>
+      </div>
+      <div class="reveal d1 benefit-card bg-charcoal rounded-2xl p-7 border border-cream/5 hover:border-gold/20 transition-all duration-300 group">
+        <div class="w-11 h-11 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/18 transition-colors">
+          <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        </div>
+        <h3 class="font-semibold mb-2">Личный сервис</h3>
+        <p class="text-cream/45 text-sm leading-relaxed">Отвечаем в Telegram быстро. Помогаем с выбором, размером и доставкой — персонально.</p>
+      </div>
+      <div class="reveal d2 benefit-card bg-charcoal rounded-2xl p-7 border border-cream/5 hover:border-gold/20 transition-all duration-300 group">
+        <div class="w-11 h-11 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/18 transition-colors">
+          <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        </div>
+        <h3 class="font-semibold mb-2">Фирменная упаковка</h3>
+        <p class="text-cream/45 text-sm leading-relaxed">Каждая пара приходит в красивой подарочной коробке Urokbrand. Идеально для подарка.</p>
+      </div>
+      <div class="reveal d3 benefit-card bg-charcoal rounded-2xl p-7 border border-gold/15 hover:border-gold/30 transition-all duration-300 group relative overflow-hidden">
+        <div class="absolute inset-0" style="background:radial-gradient(ellipse at 80% 20%,rgba(201,169,110,0.05) 0%,transparent 65%);"></div>
+        <div class="w-11 h-11 rounded-xl bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/18 transition-colors">
+          <svg class="w-5 h-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </div>
+        <h3 class="font-semibold mb-2 relative z-10">Гарантия и возврат</h3>
+        <p class="text-cream/45 text-sm leading-relaxed relative z-10">30 дней на возврат. Гарантия на оправы. Ты заслуживаешь быть в порядке — всегда.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ JOURNAL ═══════════════ -->
+<section id="journal" class="py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-end justify-between mb-14">
+      <div class="reveal">
+        <span class="text-gold/55 text-[11px] tracking-widest uppercase mb-4 block">Журнал</span>
+        <h2 class="text-4xl md:text-5xl font-bold">Lookbook &<br/>Истории</h2>
+      </div>
+      <a href="https://t.me/urokbrand" target="_blank" class="hidden md:flex items-center gap-2 text-gold/60 hover:text-gold text-sm transition-colors reveal">
+        Все публикации
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="md:col-span-2 reveal">
+        <div class="group relative rounded-2xl overflow-hidden cursor-pointer">
+          <div class="aspect-video relative overflow-hidden bg-smoke">
+            <img src="IMG_2477_cosmic.jpg" alt="Lookbook" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-coal/90 via-coal/20 to-transparent"></div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <span class="text-gold/65 text-[11px] uppercase tracking-wider mb-2 block">Lookbook</span>
+            <h3 class="text-xl font-semibold mb-2 group-hover:text-gold transition-colors">Тихая уверенность: весенний образ с Urokbrand</h3>
+            <p class="text-cream/45 text-sm">Как носить минималистичные очки и чувствовать себя на месте в любой ситуации...</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-6">
+        <div class="reveal d1 group relative rounded-2xl overflow-hidden cursor-pointer flex-1">
+          <div class="aspect-[4/3] relative overflow-hidden bg-smoke">
+            <img src="IMG_2738_cosmic.jpg" alt="Гид по очкам" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-coal/90 via-coal/20 to-transparent"></div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-4">
+            <span class="text-gold/65 text-[11px] uppercase tracking-wider mb-1 block">Гид</span>
+            <h3 class="text-base font-semibold group-hover:text-gold transition-colors">Как подобрать очки по форме лица</h3>
+          </div>
+        </div>
+        <div class="reveal d2 group relative rounded-2xl overflow-hidden cursor-pointer flex-1">
+          <div class="aspect-[4/3] relative overflow-hidden bg-smoke">
+            <img src="IMG_2747_cosmic.jpg" alt="История бренда" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-coal/90 via-coal/20 to-transparent"></div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-4">
+            <span class="text-gold/65 text-[11px] uppercase tracking-wider mb-1 block">Философия</span>
+            <h3 class="text-base font-semibold group-hover:text-gold transition-colors">U Are Ok — история создания бренда</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA BANNER ═══════════════ -->
+<section class="py-20 bg-charcoal">
+  <div class="max-w-4xl mx-auto px-4 text-center reveal">
+    <div class="border border-gold/18 rounded-3xl p-12 md:p-16 relative overflow-hidden">
+      <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 70% at 50% 50%,rgba(201,169,110,0.06) 0%,transparent 70%);"></div>
+      <span class="text-gold/55 text-[11px] tracking-widest uppercase mb-5 block relative z-10">Telegram-магазин</span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-5 relative z-10">Готов быть<br/><span class="gold-grad">в порядке?</span></h2>
+      <p class="text-cream/45 mb-10 max-w-sm mx-auto text-sm relative z-10">Весь каталог, новинки, акции и личные консультации — в нашем Telegram</p>
+      <a href="https://t.me/urokbrand" target="_blank"
+        class="relative z-10 inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-coal font-bold px-10 py-4 rounded-full transition-all hover:shadow-2xl hover:shadow-gold/25 text-base">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Открыть магазин в Telegram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer id="contacts" class="bg-coal border-t border-cream/10 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-14">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-9 h-9 rounded-full border border-gold flex items-center justify-center"><span class="text-gold font-bold">U</span></div>
+          <span class="font-semibold text-lg tracking-widest uppercase">Urokbrand</span>
+        </div>
+        <p class="text-cream/38 text-sm leading-relaxed mb-6 max-w-xs">Очки как персональный щит уверенности. Тихая сила и настоящая забота в каждой детали.</p>
+        <p class="text-cream/55 text-sm font-medium mb-3">Будь в порядке первым</p>
+        <div class="flex gap-2">
+          <input type="email" placeholder="Твой email" class="flex-1 bg-charcoal border border-cream/10 rounded-full px-4 py-2.5 text-sm text-cream placeholder-cream/25 focus:outline-none focus:border-gold/40 transition-colors min-w-0">
+          <button class="bg-gold hover:bg-gold-light text-coal font-semibold px-5 py-2.5 rounded-full text-sm transition-colors shrink-0">→</button>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-cream font-medium mb-5 text-sm">Навигация</h4>
+        <div class="flex flex-col gap-3">
+          <a href="#home"     class="text-cream/38 hover:text-cream text-sm transition-colors">Главная</a>
+          <a href="#catalog"  class="text-cream/38 hover:text-cream text-sm transition-colors">Каталог</a>
+          <a href="#about"    class="text-cream/38 hover:text-cream text-sm transition-colors">О бренде</a>
+          <a href="#journal"  class="text-cream/38 hover:text-cream text-sm transition-colors">Журнал</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-cream font-medium mb-5 text-sm">Контакты</h4>
+        <div class="flex flex-col gap-4">
+          <!-- Telegram -->
+          <a href="https://t.me/urokbrand" target="_blank" class="flex items-center gap-3 text-cream/38 hover:text-gold transition-colors group">
+            <div class="w-8 h-8 rounded-full bg-charcoal group-hover:bg-gold/10 flex items-center justify-center transition-colors shrink-0">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </div>
+            <div>
+              <div class="text-sm">@urokbrand</div>
+              <div class="text-[11px] text-cream/20">Telegram-канал</div>
+            </div>
+          </a>
+          <!-- Instagram -->
+          <a href="https://instagram.com/urok_brand" target="_blank" class="flex items-center gap-3 text-cream/38 hover:text-gold transition-colors group">
+            <div class="w-8 h-8 rounded-full bg-charcoal group-hover:bg-gold/10 flex items-center justify-center transition-colors shrink-0">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </div>
+            <div>
+              <div class="text-sm">@urok_brand</div>
+              <div class="text-[11px] text-cream/20">Instagram</div>
+            </div>
+          </a>
+          <!-- Phone -->
+          <a href="tel:+79690480901" class="flex items-center gap-3 text-cream/38 hover:text-gold transition-colors group">
+            <div class="w-8 h-8 rounded-full bg-charcoal group-hover:bg-gold/10 flex items-center justify-center transition-colors shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.338c0-.966.784-1.75 1.75-1.75h2.5a1.75 1.75 0 011.663 1.2l.812 2.846a1.75 1.75 0 01-.418 1.778l-.956.956a14.065 14.065 0 006.697 6.697l.956-.956a1.75 1.75 0 011.778-.418l2.846.812A1.75 1.75 0 0121.75 19v2.5A1.75 1.75 0 0120 23.25C10.477 23.25.75 13.523.75 4A1.75 1.75 0 012.5 2.25h2.5"/></svg>
+            </div>
+            <div>
+              <div class="text-sm">+7 969 048 09 01</div>
+              <div class="text-[11px] text-cream/20">Телефон</div>
+            </div>
+          </a>
+          <!-- Email -->
+          <a href="mailto:tonykurman@gmail.com" class="flex items-center gap-3 text-cream/38 hover:text-gold transition-colors group">
+            <div class="w-8 h-8 rounded-full bg-charcoal group-hover:bg-gold/10 flex items-center justify-center transition-colors shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            </div>
+            <div>
+              <div class="text-sm">tonykurman@gmail.com</div>
+              <div class="text-[11px] text-cream/20">Email</div>
+            </div>
+          </a>
+          <a href="https://t.me/urokbrand" target="_blank"
+            class="flex items-center gap-2 bg-gold/10 border border-gold/25 hover:bg-gold/18 text-gold rounded-xl px-4 py-3 text-sm font-medium transition-all">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Перейти в магазин
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-cream/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+      <p class="text-cream/25 text-xs">© 2025 Urokbrand. Все права защищены.</p>
+      <p class="text-cream/18 text-xs italic">U Are Ok — всегда.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════ PRODUCT MODAL ═══════════════ -->
+<div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+  <div class="absolute inset-0 bg-coal/88" style="backdrop-filter:blur(10px);" onclick="closeModal()"></div>
+  <div class="relative bg-charcoal rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-y-auto shadow-2xl">
+    <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-smoke hover:bg-cream/10 flex items-center justify-center text-cream/45 hover:text-cream transition-all">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ═══════════════ CART SIDEBAR ═══════════════ -->
+<div id="cart-overlay" class="fixed inset-0 z-[90] hidden" onclick="toggleCart()">
+  <div class="absolute inset-0 bg-coal/55" style="backdrop-filter:blur(4px);"></div>
+</div>
+<aside id="cart" class="cart-sidebar closed fixed right-0 top-0 bottom-0 z-[95] w-full max-w-sm bg-charcoal border-l border-cream/10 flex flex-col shadow-2xl">
+  <div class="flex items-center justify-between px-6 py-5 border-b border-cream/10">
+    <h3 class="font-semibold">Список желаний</h3>
+    <button onclick="toggleCart()" class="text-cream/45 hover:text-cream transition-colors">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="cart-body" class="flex-1 overflow-y-auto px-6 py-5">
+    <div id="cart-empty" class="text-center py-14">
+      <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-smoke flex items-center justify-center">
+        <svg class="w-6 h-6 text-cream/25" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+      </div>
+      <p class="text-cream/38 text-sm">Пока ничего не отложено</p>
+      <p class="text-cream/22 text-xs mt-1">Добавляй понравившиеся модели</p>
+    </div>
+    <div id="cart-list" class="space-y-3 hidden"></div>
+  </div>
+  <div id="cart-foot" class="hidden px-6 py-5 border-t border-cream/10">
+    <div class="flex justify-between mb-4 text-sm">
+      <span class="text-cream/55">Итого</span>
+      <span id="cart-total" class="font-semibold text-gold"></span>
+    </div>
+    <button onclick="sendCart()"
+      class="w-full flex items-center justify-center gap-2 bg-gold hover:bg-gold-light text-coal font-bold py-4 rounded-full transition-all hover:shadow-xl hover:shadow-gold/20">
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Отправить заказ в Telegram
+    </button>
+    <button onclick="clearCart()" class="w-full mt-2 text-cream/28 hover:text-cream/55 text-xs py-2 transition-colors">Очистить список</button>
+  </div>
+</aside>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] pointer-events-none opacity-0 transition-opacity duration-300">
+  <div class="bg-charcoal border border-gold/30 rounded-full px-6 py-3 text-sm text-cream shadow-2xl flex items-center gap-2 whitespace-nowrap">
+    <span class="w-1.5 h-1.5 bg-gold rounded-full shrink-0"></span>
+    <span id="toast-msg"></span>
+  </div>
+</div>
+
+<!-- ═══════════════ JS ═══════════════ -->
+<script>
+const TG = 'urokbrand';
+
+const products = [
+  { id:1, name:'Shield Classic', price:99, cat:'sun',     short:'Классическая квадратная форма с тёмными линзами. Твой ежедневный щит.',   desc:'Квадратная форма с едва закруглёнными углами — универсальная классика, которая подходит почти любому типу лица. Матово-чёрный ацетат итальянского производства, лёгкие дужки с пружинным шарниром.', mat:'Итальянский ацетат', size:'Универсальный S–M', prot:'UV400',   colors:['Матовый чёрный','Глубокий серый'], badge:'Хит',    bg:'#0a0a2e', img:'IMG_0739_cosmic.jpg', img2:'IMG_2474_cosmic.jpg' },
+  { id:2, name:'Ok Oval',        price:99, cat:'optical',  short:'Мягкие овальные линзы для тех, кто ценит деликатность форм.',             desc:'Тонкая металлическая оправа с овальными линзами. Золотистые петли, мягкий силиконовый носоупор. Деликатный вид, который не перегружает образ.',                                              mat:'Металл + ацетат',  size:'M / L',          prot:'Оптические', colors:['Матовое золото','Серебро'],        badge:null,    bg:'#0a0a2e', img:'IMG_2474_cosmic.jpg', img2:'IMG_2477_cosmic.jpg' },
+  { id:3, name:'Calm Cat',       price:99, cat:'sun',      short:'Кошачий глаз с едва заметным изгибом. Для уверенных и спокойных.',          desc:'Форма «кошачий глаз» с минимальным, почти незаметным изгибом — сдержанная элегантность без лишнего вычурности. Ацетат премиального класса, тонкие дужки.',                               mat:'Ацетат премиум',   size:'S / M',          prot:'UV400',      colors:['Тортуаз','Чёрный'],               badge:'Новинка', bg:'#0a0a2e', img:'KL8A6452_cosmic.jpg', img2:'KL8A6547-2_cosmic.jpg' },
+  { id:4, name:'Deep Round',     price:99, cat:'optical',  short:'Круглые оправы с тонкими металлическими дужками.',                         desc:'Тонкая титановая оправа с круглыми линзами — интеллектуальный минимализм. Невесомая конструкция, пружинные петли, удобная посадка для продолжительного ношения.',                         mat:'Титан',            size:'S',              prot:'Оптические', colors:['Матовое золото','Чёрный хром'],   badge:null,    bg:'#0a0a2e', img:'IMG_2617_cosmic.jpg', img2:'IMG_2738_cosmic.jpg' },
+  { id:5, name:'Shield II',      price:99, cat:'special',  short:'Лимитированный Shield с особым антибликовым покрытием.',                   desc:'Лимитированная версия флагманской модели Shield Classic. Ацетат Mazzucchelli, антибликовое AR-покрытие, поляризованные линзы. Только 50 экземпляров.',                                       mat:'Ацетат Mazzucchelli',size:'Универсальный', prot:'UV400 + AR',  colors:['Smoke Black'],                    badge:'Лимит',  bg:'#0a0a2e', img:'IMG_2738_cosmic.jpg', img2:'IMG_2747_cosmic.jpg' },
+  { id:7, name:'Summer Wave',    price:99, cat:'sun',     short:'Белая текстурная оправа — хит пляжного сезона.',                           desc:'Уникальная рельефная оправа ручной работы — лёгкая, яркая, запоминающаяся. Тёмные линзы с UV400-защитой. Идеальна для пляжа, бассейна и летних вечеров. Только у нас.',                    mat:'Ацетат текстурный', size:'Универсальный', prot:'UV400',      colors:['Белый'],                          badge:'Новинка', bg:'#0a0a2e', img:'KL8A6452_cosmic.jpg', img2:'KL8A6547-2_cosmic.jpg' },
+  { id:8, name:'Cosmic Reef',    price:99, cat:'sun',     short:'Объёмная оправа с морской текстурой — для тех, кто не боится выделяться.', desc:'Рельефная оправа, вдохновлённая природными формами океана. Лёгкая и прочная, с поляризованными тёмными линзами. Каждая пара уникальна по текстуре.',                                             mat:'Ацетат рельефный', size:'Универсальный', prot:'UV400',      colors:['Белый перламутр'],                badge:null,    bg:'#0a0a2e', img:'KL8A6428_cosmic.jpg', img2:'KL8A6435_cosmic.jpg' },
+  { id:9, name:'Sky Drift',       price:99, cat:'sun',     short:'Лёгкая форма для тех, кто смотрит сквозь ветер.',                               desc:'Широкие линзы и изящная белая оправа — идеальный баланс стиля и защиты. Для активных дней под открытым небом. UV400, пружинные петли, лёгкий ацетат.',                                  mat:'Ацетат лёгкий',   size:'S / M',          prot:'UV400',      colors:['Белый'],                          badge:null,    bg:'#0a0a2e', img:'KL8A6441_cosmic.jpg', img2:'KL8A6449_cosmic.jpg' },
+  { id:6, name:'Ok Minimal',     price:99, cat:'optical',  short:'Полуободковые очки для тех, кто выбирает меньше.',                         desc:'Полуободковая оправа из нержавеющей стали — максимально лёгкий и незаметный вариант для повседневного ношения. Нижняя часть линзы без ободка, тонкие дужки.',                             mat:'Нержавеющая сталь', size:'M',             prot:'Оптические', colors:['Серебро','Чёрный'],               badge:null,    bg:'#0a0a2e', img:'IMG_2747_cosmic.jpg', img2:'IMG_0739_cosmic.jpg' },
+];
+
+const reviews = [
+  { name:'Анна М.',    city:'Москва',            rating:5, text:'Надеваю Shield Classic каждый день. Это не просто очки — это ощущение, что всё под контролем. Уже третья пара от Urokbrand.' },
+  { name:'Дмитрий К.', city:'Санкт-Петербург',   rating:5, text:'Заказал Ok Oval в Telegram, ответили за 10 минут. Очки пришли в красивой упаковке, сидят идеально. 10/10.' },
+  { name:'Карина В.',  city:'Алматы',             rating:5, text:'Calm Cat — это именно то, что я искала. Элегантно, сдержанно и очень качественно. Буду заказывать ещё.' },
+  { name:'Тимур О.',   city:'Ташкент',            rating:5, text:'Брал Shield II лимитированную версию. Упаковка — отдельный арт. Носить приятно, не давит, линзы отличные.' },
+  { name:'Лиза Р.',    city:'Тбилиси',            rating:5, text:'Философия бренда откликается. Когда на мне эти очки — я правда чувствую себя "в порядке". Спасибо Urokbrand!' },
+];
+
+// ── Telegram helpers ──
+const tgLink = (name, price) =>
+  `https://t.me/${TG}?text=${encodeURIComponent(`Здравствуйте! Хочу купить: ${name} (${fmtPrice(price)} ₸). Подскажите наличие и доставку.`)}`;
+const fmtPrice = n => '$' + n;
+
+// ── Cart ──
+let cart = JSON.parse(localStorage.getItem('urk-cart')||'[]');
+
+function addToCart(id){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  if(cart.find(x=>x.id===id)){ showToast(`${p.name} уже в списке`); return; }
+  cart.push({id:p.id,name:p.name,price:p.price});
+  saveCart(); renderCart(); showToast(`${p.name} добавлен в список`);
+}
+function removeFromCart(id){ cart=cart.filter(x=>x.id!==id); saveCart(); renderCart(); }
+function clearCart(){ cart=[]; saveCart(); renderCart(); }
+function saveCart(){ localStorage.setItem('urk-cart',JSON.stringify(cart)); }
+
+function renderCart(){
+  const badge=document.getElementById('cart-badge');
+  const empty=document.getElementById('cart-empty');
+  const list=document.getElementById('cart-list');
+  const foot=document.getElementById('cart-foot');
+  const n=cart.length;
+  badge.textContent=n; badge.classList.toggle('hidden',n===0);
+  if(n===0){ empty.classList.remove('hidden'); list.classList.add('hidden'); foot.classList.add('hidden'); return; }
+  empty.classList.add('hidden'); list.classList.remove('hidden'); foot.classList.remove('hidden');
+  list.innerHTML=cart.map(item=>`
+    <div class="flex items-center gap-3 py-3 border-b border-cream/5">
+      <div class="w-11 h-11 rounded-xl overflow-hidden shrink-0 bg-smoke">
+        <img src="${products.find(x=>x.id===item.id)?.img||''}" alt="${item.name}" class="w-full h-full object-cover">
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="text-sm font-medium truncate">${item.name}</p>
+        <p class="text-xs text-gold">${fmtPrice(item.price)} ₸</p>
+      </div>
+      <button onclick="removeFromCart(${item.id})" class="text-cream/28 hover:text-cream/60 transition-colors">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>`).join('');
+  const total=cart.reduce((s,x)=>s+x.price,0);
+  document.getElementById('cart-total').textContent=fmtPrice(total)+' ₸';
+}
+
+function sendCart(){
+  if(!cart.length) return;
+  const items=cart.map(x=>`• ${x.name} — ${fmtPrice(x.price)} ₸`).join('\n');
+  const total=cart.reduce((s,x)=>s+x.price,0);
+  const msg=`Здравствуйте! Хочу заказать:\n\n${items}\n\nИтого: ${fmtPrice(total)} ₸\n\nПодскажите наличие и условия доставки.`;
+  window.open(`https://t.me/${TG}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+function toggleCart(){
+  const s=document.getElementById('cart');
+  const o=document.getElementById('cart-overlay');
+  const open=s.classList.contains('open');
+  if(open){ s.classList.replace('open','closed'); o.classList.add('hidden'); document.body.style.overflow=''; }
+  else    { s.classList.replace('closed','open'); o.classList.remove('hidden'); document.body.style.overflow='hidden'; }
+}
+
+// ── Products ──
+function renderProds(filter='all'){
+  const list=filter==='all'?products:products.filter(p=>p.cat===filter);
+  document.getElementById('prod-grid').innerHTML=list.map(p=>`
+    <div class="product-card bg-smoke rounded-2xl overflow-hidden border border-cream/5 hover:border-gold/18 cursor-pointer group" onclick="openModal(${p.id})">
+      <div class="aspect-square prod-img-wrap" style="background:${p.bg}">
+        <img src="${p.img}" alt="${p.name}" class="prod-img" loading="lazy">
+        <img src="${p.img2}" alt="${p.name} lifestyle" class="prod-img-2" loading="lazy">
+        ${p.badge?`<div class="absolute top-3 left-3 z-10 bg-gold text-coal text-[10px] font-bold px-2.5 py-1 rounded-full">${p.badge}</div>`:''}
+        <div class="absolute inset-0 flex items-end justify-start p-3 pointer-events-none">
+          <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[10px] tracking-widest uppercase text-white/70">Lifestyle ↑</span>
+        </div>
+      </div>
+      <div class="p-5">
+        <div class="flex items-start justify-between mb-2">
+          <h3 class="font-semibold group-hover:text-gold transition-colors text-sm">${p.name}</h3>
+          <span class="text-gold font-semibold text-sm ml-2 shrink-0">${fmtPrice(p.price)} ₸</span>
+        </div>
+        <p class="text-cream/38 text-xs mb-4 line-clamp-2">${p.short}</p>
+        <div class="flex gap-1.5 mb-4 flex-wrap">
+          ${p.colors.map(c=>`<span class="text-[11px] text-cream/30 border border-cream/10 rounded-full px-2 py-0.5">${c}</span>`).join('')}
+        </div>
+        <div class="flex gap-2">
+          <a href="${tgLink(p.name,p.price)}" target="_blank" onclick="event.stopPropagation()"
+            class="flex-1 flex items-center justify-center gap-1.5 bg-gold hover:bg-gold-light text-coal text-[11px] font-bold py-2.5 rounded-full transition-all">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Купить
+          </a>
+          <button onclick="event.stopPropagation();addToCart(${p.id})"
+            class="w-10 h-10 rounded-full border border-cream/10 hover:border-gold/35 flex items-center justify-center text-cream/35 hover:text-gold transition-all" title="Отложить">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function filterProd(f){
+  document.querySelectorAll('.fpb').forEach(b=>{
+    const active=b.dataset.f===f;
+    b.className=`fpb px-5 py-2 rounded-full text-sm transition-all ${active?'bg-gold text-coal font-semibold':'border border-cream/15 text-cream/50 hover:text-cream hover:border-cream/30'}`;
+  });
+  renderProds(f);
+}
+
+// ── Modal ──
+function openModal(id){
+  const p=products.find(x=>x.id===id); if(!p) return;
+  const catLabel={sun:'Солнцезащитные',optical:'Оптические',special:'Лимитированные'}[p.cat];
+  document.getElementById('modal-body').innerHTML=`
+    <div class="grid md:grid-cols-2">
+      <div class="aspect-square rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none modal-img-wrap" style="background:${p.bg}">
+        <img src="${p.img}" alt="${p.name}" class="modal-img">
+        <img src="${p.img2}" alt="${p.name} lifestyle" class="modal-img-2">
+        ${p.badge?`<div class="absolute top-4 left-4 bg-gold text-coal text-xs font-bold px-3 py-1 rounded-full z-10">${p.badge}</div>`:''}
+        <div class="absolute bottom-4 right-4 text-[10px] tracking-widest uppercase text-white/50 z-10">Наведи для lifestyle</div>
+      </div>
+      <div class="p-8">
+        <p class="text-gold/55 text-[11px] uppercase tracking-widest mb-2">${catLabel}</p>
+        <h2 class="text-2xl font-bold mb-1">${p.name}</h2>
+        <p class="text-gold text-xl font-bold mb-5">${fmtPrice(p.price)} ₸</p>
+        <p class="text-cream/55 text-sm leading-relaxed mb-6">${p.desc}</p>
+        <div class="space-y-2 mb-5 border-t border-cream/10 pt-4">
+          <div class="flex justify-between text-sm"><span class="text-cream/38">Материал</span><span>${p.mat}</span></div>
+          <div class="flex justify-between text-sm"><span class="text-cream/38">Размер</span><span>${p.size}</span></div>
+          <div class="flex justify-between text-sm"><span class="text-cream/38">Защита</span><span>${p.prot}</span></div>
+          <div class="flex justify-between text-sm"><span class="text-cream/38">Цвета</span><span class="text-right">${p.colors.join(', ')}</span></div>
+        </div>
+        <div class="flex gap-2 mb-6 flex-wrap">
+          ${p.colors.map(c=>`<span class="text-xs text-cream/45 border border-cream/10 rounded-full px-3 py-1 cursor-pointer hover:border-gold/35 transition-colors">${c}</span>`).join('')}
+        </div>
+        <div class="space-y-2">
+          <a href="${tgLink(p.name,p.price)}" target="_blank"
+            class="flex w-full items-center justify-center gap-2 bg-gold hover:bg-gold-light text-coal font-bold py-3.5 rounded-full transition-all hover:shadow-lg hover:shadow-gold/20">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Заказать через Telegram
+          </a>
+          <button onclick="copyOrder(${p.id})"
+            class="flex w-full items-center justify-center gap-2 border border-cream/10 hover:border-cream/28 text-cream/55 hover:text-cream text-sm py-3 rounded-full transition-all">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            Скопировать сообщение для заказа
+          </button>
+          <button onclick="addToCart(${p.id});closeModal()"
+            class="flex w-full items-center justify-center gap-2 border border-cream/10 hover:border-gold/28 text-cream/55 hover:text-gold text-sm py-3 rounded-full transition-all">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            Отложить
+          </button>
+        </div>
+      </div>
+    </div>`;
+  const m=document.getElementById('modal');
+  m.classList.remove('hidden'); m.classList.add('flex');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  const m=document.getElementById('modal');
+  m.classList.add('hidden'); m.classList.remove('flex');
+  document.body.style.overflow='';
+}
+function copyOrder(id){
+  const p=products.find(x=>x.id===id);
+  const t=`Здравствуйте! Хочу купить: ${p.name} (${fmtPrice(p.price)} ₸).`;
+  navigator.clipboard.writeText(t).then(()=>showToast('Скопировано! Вставь в Telegram'));
+}
+
+// ── Carousel ──
+let slide=0;
+function renderCarousel(){
+  const track=document.getElementById('car-track');
+  track.innerHTML=reviews.map(r=>`
+    <div class="min-w-full md:min-w-[calc(33.333%-16px)] bg-smoke rounded-2xl p-6 border border-cream/5">
+      <div class="flex mb-4">${'★'.repeat(r.rating).split('').map(()=>`<span class="text-gold text-sm">★</span>`).join('')}</div>
+      <p class="text-cream/62 text-sm leading-relaxed mb-6 italic">"${r.text}"</p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-charcoal border border-gold/18 flex items-center justify-center shrink-0">
+          <span class="text-gold text-sm font-semibold">${r.name[0]}</span>
+        </div>
+        <div>
+          <p class="text-sm font-medium">${r.name}</p>
+          <p class="text-cream/28 text-xs">${r.city}</p>
+        </div>
+      </div>
+    </div>`).join('');
+  document.getElementById('car-dots').innerHTML=reviews.map((_,i)=>
+    `<button onclick="goSlide(${i})" class="cdot rounded-full transition-all ${i===0?'bg-gold w-5 h-2':'bg-cream/20 w-2 h-2'}"></button>`).join('');
+}
+function updCarousel(){
+  const track=document.getElementById('car-track');
+  const mob=window.innerWidth<768;
+  track.style.transform=`translateX(-${slide*(mob?100:100/3)}%)`;
+  document.querySelectorAll('.cdot').forEach((d,i)=>{
+    d.className=`cdot rounded-full transition-all ${i===slide?'bg-gold w-5 h-2':'bg-cream/20 w-2 h-2'}`;
+  });
+}
+function nextSlide(){ const max=window.innerWidth<768?reviews.length-1:reviews.length-3; slide=slide>=max?0:slide+1; updCarousel(); }
+function prevSlide(){ const max=window.innerWidth<768?reviews.length-1:reviews.length-3; slide=slide<=0?max:slide-1; updCarousel(); }
+function goSlide(i){ slide=i; updCarousel(); }
+
+// ── Mobile menu ──
+function toggleMobileMenu(){
+  const m=document.getElementById('mobile-menu');
+  m.classList.toggle('mm-hidden'); m.classList.toggle('mm-show');
+}
+function closeMM(){
+  const m=document.getElementById('mobile-menu');
+  m.classList.add('mm-hidden'); m.classList.remove('mm-show');
+}
+
+// ── Toast ──
+let toastTimer;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  t.style.opacity='1';
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.style.opacity='0',2800);
+}
+
+// ── Scroll reveal ──
+function initReveal(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+  },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+// ── Keyboard ──
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') closeModal();
+  if(e.key==='ArrowRight') nextSlide();
+  if(e.key==='ArrowLeft') prevSlide();
+});
+
+// ── Auto-slide ──
+setInterval(nextSlide,5000);
+
+// ── Mobile video fix ──
+document.addEventListener('DOMContentLoaded',()=>{
+  const v = document.getElementById('hero-video');
+  if(v){
+    v.play().catch(()=>{});
+    document.addEventListener('touchstart',()=>v.play().catch(()=>{}),{once:true});
+  }
+});
+
+// ── Init ──
+document.addEventListener('DOMContentLoaded',()=>{
+  renderProds();
+  renderCarousel();
+  initReveal();
+  renderCart();
+});
+</script>
+</body>
+</html>
