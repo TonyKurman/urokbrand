@@ -1,0 +1,25 @@
+name: Deploy to reg.ru
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: server265.hosting.reg.ru
+          username: u3480451
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /www/urokbrand.online/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            *.mov
+            *.md
