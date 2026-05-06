@@ -24,7 +24,7 @@
       }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <style>
     *{box-sizing:border-box;}
     html{scroll-behavior:smooth;}
@@ -87,6 +87,13 @@
     .mm-show{opacity:1;pointer-events:all;transform:translateY(0);}
 
     .line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+    /* Cookie Banner */
+    #cookie-banner{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:9999;background:#1a1a1a;color:#c8b89a;border:1px solid rgba(200,184,154,0.2);border-radius:12px;padding:1rem 1.25rem;display:flex;align-items:center;gap:1.25rem;max-width:600px;width:calc(100% - 2rem);font-size:12px;line-height:1.5;box-shadow:0 4px 32px rgba(0,0,0,0.5);}
+    #cookie-banner p{margin:0;}
+    #cookie-banner a,#cookie-banner button.cookie-link{color:#c8b89a;text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:none;padding:0;font-size:12px;}
+    #cookie-accept{flex-shrink:0;background:#c8b89a;color:#0f0f0f;border:none;padding:0.5rem 1.1rem;font-size:12px;font-weight:700;letter-spacing:0.05em;cursor:pointer;border-radius:8px;}
+    #cookie-accept:hover{opacity:0.85;}
   </style>
 </head>
 <body class="bg-coal text-cream">
@@ -110,7 +117,6 @@
         <a href="#home"    class="nav-link text-sm text-cream/60 hover:text-cream transition-colors">Главная</a>
         <a href="#catalog" class="nav-link text-sm text-cream/60 hover:text-cream transition-colors">Каталог</a>
         <a href="#about"   class="nav-link text-sm text-cream/60 hover:text-cream transition-colors">О бренде</a>
-        <a href="#journal" class="nav-link text-sm text-cream/60 hover:text-cream transition-colors">Журнал</a>
         <a href="#contacts" class="nav-link text-sm text-cream/60 hover:text-cream transition-colors">Контакты</a>
       </div>
 
@@ -145,7 +151,6 @@
       <a href="#home"    onclick="closeMM()" class="text-cream/60 hover:text-cream py-1 transition-colors">Главная</a>
       <a href="#catalog" onclick="closeMM()" class="text-cream/60 hover:text-cream py-1 transition-colors">Каталог</a>
       <a href="#about"   onclick="closeMM()" class="text-cream/60 hover:text-cream py-1 transition-colors">О бренде</a>
-      <a href="#journal" onclick="closeMM()" class="text-cream/60 hover:text-cream py-1 transition-colors">Журнал</a>
       <a href="#contacts" onclick="closeMM()" class="text-cream/60 hover:text-cream py-1 transition-colors">Контакты</a>
       <a href="https://t.me/urokbrand" target="_blank"
         class="mt-2 flex items-center justify-center gap-2 bg-gold text-coal font-semibold py-3.5 rounded-full">
@@ -247,6 +252,28 @@
         </div>
       </div>
     </div>
+
+    <!-- Brand statement over video -->
+    <div class="mt-24 md:mt-32 text-center reveal">
+      <div class="relative max-w-4xl mx-auto px-4">
+        <div class="text-gold/10 select-none absolute -top-8 left-1/2 -translate-x-1/2" style="font-family:'Playfair Display',serif;font-size:9rem;line-height:1;pointer-events:none;">"</div>
+        <p style="font-family:'Playfair Display',serif;" class="relative z-10 text-3xl md:text-5xl font-normal italic leading-snug text-cream/90 mb-6">
+          <span class="gold-grad font-bold not-italic">«You Are Ok»</span> — это больше,<br class="hidden md:block"/> чем просто очки.
+        </p>
+        <p style="font-family:'Playfair Display',serif;" class="text-xl md:text-2xl font-light italic text-cream/60 leading-relaxed mb-4">
+          Это ваш персональный щит уверенности и комфорта.
+        </p>
+        <p style="font-family:'Playfair Display',serif;" class="text-lg md:text-xl font-light italic text-cream/40 leading-relaxed">
+          Когда вы надеваете эти очки, вы автоматически становитесь «в порядке» —<br class="hidden md:block"/>
+          независимо от того, как вы себя чувствуете внутри.
+        </p>
+        <div class="mt-10 flex items-center justify-center gap-4">
+          <div class="h-px w-16 bg-gradient-to-r from-transparent to-gold/50"></div>
+          <div class="w-1.5 h-1.5 rounded-full bg-gold/60"></div>
+          <div class="h-px w-16 bg-gradient-to-l from-transparent to-gold/50"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -303,57 +330,6 @@
   </div>
 </section>
 
-<!-- ═══════════════ GALLERY ═══════════════ -->
-<section id="journal" class="py-14 bg-coal">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10 reveal">
-      <span class="text-gold/55 text-[11px] tracking-widest uppercase mb-4 block">Галерея</span>
-      <h2 class="text-4xl md:text-5xl font-bold">Наши очки</h2>
-    </div>
-    <!-- Row 1: 1 big + 2 small -->
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-3">
-      <div class="col-span-2 md:col-span-1 row-span-2 reveal">
-        <img src="KL8A6547-2_cosmic.jpg" alt="Urokbrand" class="w-full h-full object-cover rounded-2xl" style="min-height:300px;max-height:600px;">
-      </div>
-      <div class="reveal d1">
-        <img src="KL8A6452_cosmic.jpg" alt="Urokbrand" class="w-full object-cover rounded-2xl" style="height:220px;">
-      </div>
-      <div class="reveal d2">
-        <img src="KL8A6467_cosmic.jpg" alt="Urokbrand" class="w-full object-cover rounded-2xl" style="height:220px;">
-      </div>
-      <div class="reveal d1">
-        <img src="KL8A6428_cosmic.jpg" alt="Urokbrand" class="w-full object-cover rounded-2xl" style="height:220px;">
-      </div>
-      <div class="reveal d2">
-        <img src="KL8A6435_cosmic.jpg" alt="Urokbrand" class="w-full object-cover rounded-2xl" style="height:220px;">
-      </div>
-    </div>
-    <!-- Row 2: 3 equal -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
-      <div class="reveal">
-        <img src="IMG_0739_cosmic.jpg" alt="Urokbrand" class="w-full object-cover rounded-2xl" style="height:280px;">
-      </div>
-      <div class="reveal d1">
-        <img src="IMG_2474_cosmic.jpg" alt="Urokbrand" class="w-full object-cover rounded-2xl" style="height:280px;">
-      </div>
-      <div class="reveal d2">
-        <img src="IMG_2617_cosmic.jpg" alt="Urokbrand" class="w-full object-cover rounded-2xl" style="height:280px;">
-      </div>
-    </div>
-    <!-- Row 3: 2 + 1 big -->
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-      <div class="reveal">
-        <img src="KL8A6441_cosmic.jpg" alt="Urokbrand" class="w-full object-cover rounded-2xl" style="height:240px;">
-      </div>
-      <div class="reveal d1">
-        <img src="KL8A6449_cosmic.jpg" alt="Urokbrand" class="w-full object-cover rounded-2xl" style="height:240px;">
-      </div>
-      <div class="reveal d2">
-        <img src="IMG_2738_cosmic.jpg" alt="Urokbrand" class="w-full object-cover rounded-2xl" style="height:240px;">
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════════ CTA BANNER ═══════════════ -->
 <section class="py-20 bg-charcoal">
@@ -381,12 +357,7 @@
           <div class="w-9 h-9 rounded-full border border-gold flex items-center justify-center"><span class="text-gold font-bold">U</span></div>
           <span class="font-semibold text-lg tracking-widest uppercase">Urokbrand</span>
         </div>
-        <p class="text-cream/38 text-sm leading-relaxed mb-6 max-w-xs">Очки как персональный щит уверенности. Тихая сила и настоящая забота в каждой детали.</p>
-        <p class="text-cream/55 text-sm font-medium mb-3">Будь в порядке первым</p>
-        <div class="flex gap-2">
-          <input type="email" placeholder="Твой email" class="flex-1 bg-charcoal border border-cream/10 rounded-full px-4 py-2.5 text-sm text-cream placeholder-cream/25 focus:outline-none focus:border-gold/40 transition-colors min-w-0">
-          <button class="bg-gold hover:bg-gold-light text-coal font-semibold px-5 py-2.5 rounded-full text-sm transition-colors shrink-0">→</button>
-        </div>
+        <p class="text-cream/38 text-sm leading-relaxed max-w-xs">Очки как персональный щит уверенности. Тихая сила и настоящая забота в каждой детали.</p>
       </div>
       <div>
         <h4 class="text-cream font-medium mb-5 text-sm">Навигация</h4>
@@ -394,7 +365,6 @@
           <a href="#home"     class="text-cream/38 hover:text-cream text-sm transition-colors">Главная</a>
           <a href="#catalog"  class="text-cream/38 hover:text-cream text-sm transition-colors">Каталог</a>
           <a href="#about"    class="text-cream/38 hover:text-cream text-sm transition-colors">О бренде</a>
-          <a href="#journal"  class="text-cream/38 hover:text-cream text-sm transition-colors">Журнал</a>
         </div>
       </div>
       <div>
@@ -448,9 +418,15 @@
         </div>
       </div>
     </div>
-    <div class="border-t border-cream/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-      <p class="text-cream/25 text-xs">© 2025 Urokbrand. Все права защищены.</p>
-      <p class="text-cream/18 text-xs italic">U Are Ok — всегда.</p>
+    <div class="border-t border-cream/10 pt-6 space-y-3">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+        <p class="text-cream/25 text-xs">© 2026 Urokbrand. Все права защищены.</p>
+        <p class="text-cream/18 text-xs italic">U Are Ok — всегда.</p>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-2">
+        <p class="text-cream/20 text-xs">ИП Курмандаев Антон Халитович · ИНН 501209633586 · ОГРНИП 323508100026562</p>
+        <a href="privacy.html" class="text-cream/30 hover:text-cream/60 text-xs underline underline-offset-2 transition-colors">Политика конфиденциальности</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -492,6 +468,7 @@
       <span class="text-cream/55">Итого</span>
       <span id="cart-total" class="font-semibold text-gold"></span>
     </div>
+    <p class="text-cream/30 text-[11px] mb-3 leading-relaxed text-center">Нажимая кнопку, вы соглашаетесь с <a href="privacy.html" class="underline underline-offset-2 text-cream/40 hover:text-cream/70 transition-colors">Политикой обработки персональных данных</a></p>
     <button onclick="sendCart()"
       class="w-full flex items-center justify-center gap-2 bg-gold hover:bg-gold-light text-coal font-bold py-4 rounded-full transition-all hover:shadow-xl hover:shadow-gold/20">
       <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
@@ -784,6 +761,25 @@ document.addEventListener('DOMContentLoaded',()=>{
   initReveal();
   renderCart();
 });
+
+  // Cookie banner
+  function acceptCookies(){
+    localStorage.setItem('urk_cookies','1');
+    document.getElementById('cookie-banner').style.display='none';
+  }
+  if(!localStorage.getItem('urk_cookies')){
+    setTimeout(function(){
+      var b=document.getElementById('cookie-banner');
+      if(b) b.style.display='flex';
+    },1500);
+  }
 </script>
+
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" style="display:none">
+  <p>Мы используем cookie для улучшения сайта. Продолжая пользоваться сайтом, вы соглашаетесь с <a href="privacy.html" class="cookie-link">Политикой конфиденциальности</a>.</p>
+  <button id="cookie-accept" onclick="acceptCookies()">Принять</button>
+</div>
 </body>
 </html>
